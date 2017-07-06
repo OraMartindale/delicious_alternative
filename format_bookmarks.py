@@ -13,11 +13,13 @@ class InvalidFormatError(Exception):
 
 
 def main(format_=DEFAULT_FORMAT):
-    bookmarks = _get_bookmarks()
+    pprint(bookmarks(format_))
+
+def bookmarks(format_=DEFAULT_FORMAT):
+    bookmarks_ = _get_bookmarks()
     if format_ not in FUNC_MAP:
         raise InvalidFormatError
-    output = FUNC_MAP.get(format_)(bookmarks)
-    pprint(output)
+    return FUNC_MAP.get(format_)(bookmarks_)
 
 def _get_bookmarks():
     with open(BOOKMARKS_FILE, 'r') as in_file:
