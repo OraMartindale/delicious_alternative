@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import format_bookmarks
 app = Flask(__name__)
 
@@ -14,7 +14,8 @@ def bookmarks_page():
 
 
 def _get_bookmarks():
-    return format_bookmarks.bookmarks('html')
+    bookmarks = format_bookmarks._get_bookmarks()
+    return render_template('homepage.html', bookmarks=bookmarks)
 
 
 def _add_bookmark():
